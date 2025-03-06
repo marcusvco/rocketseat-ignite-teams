@@ -7,7 +7,9 @@ export const Container = styled.View`
   align-items: center;
   background-color: ${({ theme }: DefaultTheme) => theme.COLORS.GRAY_600};
 `
-export const LoadingIndicator = styled.ActivityIndicator.attrs({
-  size: "large",
-  color: "#FFF",
-})``
+export const LoadingIndicator = styled.ActivityIndicator.attrs(
+  ({ theme }: DefaultTheme) => ({
+    size: "large",
+    color: theme.COLORS.GREEN_700,
+  })
+)``
