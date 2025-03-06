@@ -6,10 +6,13 @@ import { Input } from "@/components/input"
 import { Filter } from "@/components/filter"
 import { FlatList } from "react-native"
 import { useState } from "react"
+import { PlayerCard } from "@/components/player-card"
+import { ListEmpty } from "@/components/list-empty"
+import { Button } from "@/components/button"
 
 export function Players() {
-  const [players, setPlayers] = useState<string[]>([])
   const [team, setTeam] = useState<string>("Time A")
+  const [players, setPlayers] = useState<string[]>([])
 
   return (
     <Container>
@@ -35,11 +38,30 @@ export function Players() {
               onPress={() => setTeam(item)}
             />
           )}
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item}
           horizontal
         />
         <NumberOfPlayers>{players.length}</NumberOfPlayers>
       </HeaderList>
+
+      <FlatList
+        data={players}
+        renderItem={({ item }) => (
+          <PlayerCard name={item} onRemove={() => {}} />
+        )}
+        keyExtractor={(item) => item}
+        ListEmptyComponent={() => (
+          <ListEmpty message="Não há pessoas nesse time." />
+        )}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          { paddingBottom: 100 },
+          !players.length && { flex: 1 },
+        ]}
+      />
+
+      <Button title="Remover turma" type="SECONDARY" />
     </Container>
   )
 }
