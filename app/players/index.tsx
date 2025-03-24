@@ -9,8 +9,10 @@ import { useState } from "react"
 import { PlayerCard } from "@/components/player-card"
 import { ListEmpty } from "@/components/list-empty"
 import { Button } from "@/components/button"
+import theme from "@/theme"
+import { ThemeProvider } from "styled-components/native"
 
-export function Players() {
+export default function Players() {
   const [team, setTeam] = useState<string>("Time A")
   const [players, setPlayers] = useState<string[]>([])
 

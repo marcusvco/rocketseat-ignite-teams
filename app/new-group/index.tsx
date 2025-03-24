@@ -1,10 +1,10 @@
-import { Header } from "@/components/header"
-import { Container, Content, Icon } from "./styles"
-import { Highlight } from "@/components/highlight"
 import { Button } from "@/components/button"
+import { Header } from "@/components/header"
+import { Highlight } from "@/components/highlight"
 import { Input } from "@/components/input"
+import { Container, Content, Icon } from "./styles"
 
-export function NewGroup() {
+export default function NewGroup() {
   return (
     <Container>
       <Header showBackButton />

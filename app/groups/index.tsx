@@ -1,14 +1,16 @@
+import { Button } from "@/components/button"
+import { GroupCard } from "@/components/group-card"
 import { Header } from "@/components/header"
 import { Highlight } from "@/components/highlight"
-import { Container } from "./styles"
-import { GroupCard } from "@/components/group-card"
-import { FlatList } from "react-native"
-import { useState } from "react"
 import { ListEmpty } from "@/components/list-empty"
-import { Button } from "@/components/button"
+import { useState } from "react"
+import { FlatList } from "react-native"
+import { Container } from "./styles"
+import { useRouter } from "expo-router"
 
-export function Groups() {
+export default function Groups() {
   const [groups, setGroups] = useState<string[]>([])
+  const router = useRouter()
 
   return (
     <Container>
@@ -21,7 +23,10 @@ export function Groups() {
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
         ListEmptyComponent={<ListEmpty message="Nenhuma turma cadastrada" />}
       />
-      <Button title="Criar nova turma" />
+      <Button
+        title="Criar nova turma"
+        onPress={() => router.navigate("/new-group")}
+      />
     </Container>
   )
 }
