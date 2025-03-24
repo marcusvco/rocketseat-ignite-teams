@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components/native"
 export default function RootLayout() {
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: theme.COLORS.GRAY_600 }}>
         <StatusBar
           style="light"
           translucent
