@@ -3,14 +3,31 @@ import { GroupCard } from "@/components/group-card"
 import { Header } from "@/components/header"
 import { Highlight } from "@/components/highlight"
 import { ListEmpty } from "@/components/list-empty"
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { FlatList } from "react-native"
 import { Container } from "./styles"
-import { useRouter } from "expo-router"
+import { useFocusEffect, useRouter } from "expo-router"
+import { getAllGroups } from "../storage/geat-all-groups"
 
 export default function Groups() {
   const [groups, setGroups] = useState<string[]>([])
   const router = useRouter()
+
+  async function fetchGroups() {
+    try {
+      const groups = await getAllGroups()
+      setGroups(groups)
+      console.log(groups)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchGroups()
+    }, [])
+  )
 
   return (
     <Container>
