@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react"
 import { FlatList } from "react-native"
 import { Container } from "./styles"
 import { useFocusEffect, useRouter } from "expo-router"
-import { getAllGroups } from "../storage/geat-all-groups"
+import { getAllGroups } from "../storage/group/geat-all-groups"
 
 export default function Groups() {
   const [groups, setGroups] = useState<string[]>([])

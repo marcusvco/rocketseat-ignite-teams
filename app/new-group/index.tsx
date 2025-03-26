@@ -4,7 +4,7 @@ import { Highlight } from "@/components/highlight"
 import { Input } from "@/components/input"
 import { Container, Content, Icon } from "./styles"
 import { useState } from "react"
-import { createGroup } from "../storage/create-group"
+import { createGroup } from "../storage/group/create-group"
 import { useRouter } from "expo-router"
 import { AppError } from "../utils/AppErrors"
 import { Alert } from "react-native"
@@ -22,8 +22,7 @@ export default function NewGroup() {
       router.navigate("/players")
     } catch (err) {
       if (err instanceof AppError) {
-        Alert.alert("Novo Grupo", err.message)
-        return
+        return Alert.alert("Novo Grupo", err.message)
       }
       Alert.alert("Novo Grupo", "Não foi possível criar um novo grupo.")
       console.log(err)
