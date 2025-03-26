@@ -17,7 +17,6 @@ export default function Groups() {
     try {
       const groups = await getAllGroups()
       setGroups(groups)
-      console.log(groups)
     } catch (err) {
       console.log(err)
     }
@@ -35,7 +34,14 @@ export default function Groups() {
       <Highlight title="Turmas" subtitle="jogue com a sua turma" />
       <FlatList
         data={groups}
-        renderItem={({ item }) => <GroupCard title={item} />}
+        renderItem={({ item }) => (
+          <GroupCard
+            title={item}
+            onPress={() =>
+              router.navigate({ pathname: "/players", params: { group: item } })
+            }
+          />
+        )}
         keyExtractor={(item) => item}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
         ListEmptyComponent={<ListEmpty message="Nenhuma turma cadastrada" />}

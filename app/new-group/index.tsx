@@ -6,14 +6,28 @@ import { Container, Content, Icon } from "./styles"
 import { useState } from "react"
 import { createGroup } from "../storage/create-group"
 import { useRouter } from "expo-router"
+import { AppError } from "../utils/AppErrors"
+import { Alert } from "react-native"
 
 export default function NewGroup() {
   const router = useRouter()
   const [group, setGroup] = useState("")
 
   async function handleNewGroup() {
-    await createGroup(group)
-    router.navigate("/players")
+    if (group.trim().length === 0) {
+      return Alert.alert("Novo Grupo", "Informe o nome da turma.")
+    }
+    try {
+      await createGroup(group)
+      router.navigate("/players")
+    } catch (err) {
+      if (err instanceof AppError) {
+        Alert.alert("Novo Grupo", err.message)
+        return
+      }
+      Alert.alert("Novo Grupo", "Não foi possível criar um novo grupo.")
+      console.log(err)
+    }
   }
 
   return (
