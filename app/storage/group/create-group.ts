@@ -7,12 +7,12 @@ export async function createGroup(name: string) {
   try {
     const storedGroups = await getAllGroups()
     const groupAlreadyExists = storedGroups.includes(name)
+
     if (groupAlreadyExists) {
       throw new AppError("Já existe um grupo cadastrado com esse nome.")
     }
 
     const storage = JSON.stringify([...storedGroups, name])
-
     await AsyncStorage.setItem(GROUP_COLLECTION, storage)
   } catch (err) {
     throw err

@@ -10,7 +10,7 @@ export async function addPlayerByGroup(
   try {
     const storedPlayers = await getPlayersByGroup(group)
     const playerAlreadyExists = storedPlayers.filter(
-      (p) => p.name === player.name
+      (storedPlayer) => storedPlayer.name === player.name
     )
 
     if (playerAlreadyExists.length) {
